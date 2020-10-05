@@ -37,6 +37,11 @@
             </select>
         </label>
     </div>
+    <label>Location
+        <input  th:field="${events.location}" class="form-control">
+    </label>
+    <p class="error" th:errors="${events.location}"></p>
+    </div>
     <div class="form-group">
         <input type="submit" value="Create Event" class="btn btn-success">
     </div>

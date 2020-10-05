@@ -21,13 +21,17 @@ public class Events {
     @Email(message = "Invalid email, Try again.")
     private String contactEmail;
 
+    @NotBlank(message = "Location cannot be blank.")
+    private String location;
+
     private EventType type;
 
-    public Events(String name, String description, String contactEmail, EventType type) {
+    public Events(String name, String description, String contactEmail, String location, EventType type) {
         this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.location=location;
         this.type = type;
     }
 
@@ -75,6 +79,14 @@ public class Events {
 
     public void setType(EventType type) {
         this.type = type;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override
