@@ -37,11 +37,28 @@
             </select>
         </label>
     </div>
+
+    <div>
     <label>Location
         <input  th:field="${events.location}" class="form-control">
     </label>
     <p class="error" th:errors="${events.location}"></p>
     </div>
+
+    <div>
+        <label>Registration Required?
+            <input type="checkbox" th:field="${events.registration}" class="form-control">
+        </label>
+        <p class="error" th:errors="${events.registration}"></p>
+    </div>
+
+    <div>
+        <label>Number of Attendees
+            <input type="number" th:field="${events.attendees}" class="form-control" min="1">
+        </label>
+        <p class="error" th:errors="${events.attendees}"></p>
+    </div>
+
     <div class="form-group">
         <input type="submit" value="Create Event" class="btn btn-success">
     </div>
