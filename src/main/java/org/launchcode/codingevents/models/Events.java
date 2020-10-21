@@ -1,16 +1,17 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.sql.DataTruncation;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
+@Entity
 public class Events {
 
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
 
     @NotBlank(message = "Name required.")
     @Size(min=3, max=50, message = "Name must be between 3 to 50 characters.")
@@ -29,13 +30,12 @@ public class Events {
     @AssertTrue(message = "Must be true.")
     private boolean registration;
 
-    @Size(min=1, message = "Must be at least one attendee.")
+    @Min(value=1, message = "Must be at least one attendee.")
     private int attendees;
 
     private EventType type;
 
     public Events(String name, String description, String contactEmail, String location, boolean registration, int attendees, EventType type) {
-        this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
@@ -45,10 +45,7 @@ public class Events {
         this.type = type;
     }
 
-    public Events() {
-        this.id=nextId;
-        nextId++;
-    }
+    public Events() {}
 
     public String getName() {
         return name;
