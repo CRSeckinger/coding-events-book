@@ -20,30 +20,30 @@ public class EventCategoryController {
     @Autowired
     private EventCategoryRepository eventCategoryRepository;
 
-    @GetMapping("eventCategories/index")
-    public String displayAllEvents(Model model) {
+    @GetMapping("")
+    public String displayAllEventCategories(Model model) {
         model.addAttribute("title", "All Categories");
-        model.addAttribute("categories", eventCategoryRepository.findAll());
+        model.addAttribute("eventCategories", eventCategoryRepository.findAll());
         return "eventCategories/index";
     }
 
-    @GetMapping("eventCategories/create")
+    @GetMapping("create")
     public String renderCreateEventCategoryForm (Model model) {
         model.addAttribute("title", "Create Category");
         model.addAttribute(new EventCategory());
         return "eventCategories/create";
     }
 
-    @PostMapping("eventCategories/create")
-    public String processCreateEventCategoryForm (@Valid @ModelAttribute EventCategory eventCategory,
+    @PostMapping("create")
+    public String processCreateEventCategoryForm (@ModelAttribute @Valid EventCategory newCategory,
                                                   Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Category");
-            model.addAttribute(new EventCategory());
+//            model.addAttribute("category", newCategory());
             return "eventCategories/create";
         }
-        eventCategoryRepository.save(eventCategory);
+        eventCategoryRepository.save(newCategory);
         return "redirect:";
     }
 
